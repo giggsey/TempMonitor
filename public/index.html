@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Temperature Monitoring</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+        .container {
+            margin-top: 35px;
+        }
+
+        h2.panel-title {
+            font-size: 24pt;
+        }
+
+        .temperature footer p {
+            margin-top: 10px;
+            margin-bottom: 0;
+        }
+
+        .temperature footer p:before {
+            content: "Last Updated ";
+        }
+
+        .panel-none .panel-footer .nav-pills li a {
+            color: #333;
+        }
+
+        .panel-none .panel-footer .nav-pills li.active a {
+            color: #555;
+            background-color: #e7e7e7;
+        }
+
+        .panel-danger .panel-footer .nav-pills li a {
+            color: #a94442;
+        }
+
+        .panel-danger .panel-footer .nav-pills li.active a {
+            color: #333;
+            background-color: #f2dede;
+        }
+
+        .panel-success .panel-footer .nav-pills li a {
+            color: #3c763d;
+        }
+
+        .panel-success .panel-footer .nav-pills li.active a {
+            color: #333;
+            background-color: #dff0d8;
+        }
+    </style>
+</head>
+<body  data-spy="scroll" data-target=".top-navbar" data-offset="50">
+
+<nav id="navbar-example2" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".top-navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Raspberry Pi Temperature Monitoring</a>
+        </div>
+        <div class="collapse navbar-collapse top-navbar">
+            <ul class="nav navbar-nav">
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="page-header">
+        <h1>Raspberry Pi Temperature Monitoring</h1>
+    </div>
+
+    <div id="template" class='temperature' style="display: none;">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">
+                    <temperature-title>Panel title</temperature-title>
+                    <small>
+                        <p class="label label-default">
+                            <temp>32.425</temp> &deg;C
+                        </p>
+                    </small>
+                </h2>
+            </div>
+            <div class="panel-body">
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="hour">Hour</div>
+                    <div class="tab-pane fade" id="day">Day</div>
+                    <div class="tab-pane fade" id="3day">3 Day</div>
+                    <div class="tab-pane fade" id="week">Week</div>
+                    <div class="tab-pane fade" id="month">Month</div>
+                    <div class="tab-pane fade" id="year">Year</div>
+
+                </div>
+            </div>
+            <div class="panel-footer clearfix">
+                <ul class="nav nav-pills pull-left">
+                    <li class="active"><a href="#hour" data-toggle="pill">Hour</a></li>
+                    <li><a href="#day" data-toggle="pill">Day</a></li>
+                    <li><a href="#3day" data-toggle="tab">3 Day</a></li>
+                    <li><a href="#week" data-toggle="tab">Week</a></li>
+                    <li><a href="#month" data-toggle="tab">Month</a></li>
+                    <li><a href="#year" data-toggle="tab">Year</a></li>
+                </ul>
+                <footer class="pull-right"><p class="text-muted"></p></footer>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div id="content" role='main'></div>
+    </div>
+
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/moment.min.js"></script>
+<script src="js/livestamp.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
