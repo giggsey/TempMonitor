@@ -81,6 +81,7 @@ ksort($temps);
 file_put_contents('public/temp.json', json_encode($temps));
 
 foreach ($config as $name => $data) {
+    $rrdPath = 'rrd/' . $name . '.rrd';
     // Create graphs
     create_graph($name . '_hour', $rrdPath, $name, 3600);
     create_graph($name . '_day', $rrdPath, $name, 3600 * 24);
