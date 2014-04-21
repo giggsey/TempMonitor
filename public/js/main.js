@@ -24,7 +24,7 @@ function updateTemps() {
                 });
             });
 
-            $("temperature-title", obj).html(key);
+            $("temperature-title", obj).html(val.name);
             $("temp", obj).html(val.temp);
             $("footer > p", obj).attr('data-livestamp', val.updated).attr('title', 'Last Updated at ' + moment.unix(val.updated).format());
 
@@ -64,7 +64,7 @@ function updateTemps() {
             var li = $("<li>");
             var a = $("<a>");
             a.attr('href', '#' + friendlyName);
-            a.html(key);
+            a.html(val.name);
             li.html(a);
 
             if ($('#' + friendlyName).length > 0) {

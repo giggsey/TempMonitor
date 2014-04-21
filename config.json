@@ -1,4 +1,7 @@
 {
+    "Outside": {
+        "sensor": "28.9823CA030000"
+    },
     "Temp 1": {
         "sensor": "28.EAC059050000"
     },
@@ -8,6 +11,7 @@
         "max": 18
     },
     "Temp 3": {
+        "name": "TV",
         "sensor": "28.A1045A050000",
         "min": 25,
         "max": 30

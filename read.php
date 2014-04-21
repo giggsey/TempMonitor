@@ -16,6 +16,8 @@ $temps = file_exists('public/temp.json') ? json_decode(file_get_contents('public
 
 foreach ($config as $name => $data) {
 
+    $friendlyName = array_key_exists('name', $data) ? $data['name'] : $name;
+
     echo "Processing '{$name}'\n";
 
     $sensor = $data['sensor'];
@@ -73,7 +75,7 @@ foreach ($config as $name => $data) {
     $min = array_key_exists('min', $data) ? $data['min'] : null;
     $max = array_key_exists('max', $data) ? $data['max'] : null;
 
-    $temps[$name] = array('temp' => $temperature, 'updated' => time(), 'min' => $min, 'max' => $max);
+    $temps[$name] = array('temp' => $temperature, 'updated' => time(), 'min' => $min, 'max' => $max, 'name' => $friendlyName);
 }
 
 ksort($temps);
@@ -81,14 +83,15 @@ ksort($temps);
 file_put_contents('public/temp.json', json_encode($temps));
 
 foreach ($config as $name => $data) {
+    $friendlyName = array_key_exists('name', $data) ? $data['name'] : $name;
     $rrdPath = 'rrd/' . $name . '.rrd';
     // Create graphs
-    create_graph($name . '_hour', $rrdPath, $name, 3600);
-    create_graph($name . '_day', $rrdPath, $name, 3600 * 24);
-    create_graph($name . '_3day', $rrdPath, $name, 3600 * 24 * 3);
-    create_graph($name . '_week', $rrdPath, $name, 3600 * 24 * 7);
-    create_graph($name . '_month', $rrdPath, $name, 3600 * 24 * 30);
-    create_graph($name . '_year', $rrdPath, $name, 3600 * 24 * 365);
+    create_graph($name . '_hour', $rrdPath, $friendlyName, 3600);
+    create_graph($name . '_day', $rrdPath, $friendlyName, 3600 * 24);
+    create_graph($name . '_3day', $rrdPath, $friendlyName, 3600 * 24 * 3);
+    create_graph($name . '_week', $rrdPath, $friendlyName, 3600 * 24 * 7);
+    create_graph($name . '_month', $rrdPath, $friendlyName, 3600 * 24 * 30);
+    create_graph($name . '_year', $rrdPath, $friendlyName, 3600 * 24 * 365);
 }
 
 function create_graph($output, $rrdPath, $name, $seconds)
