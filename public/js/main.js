@@ -70,7 +70,7 @@ function updateTemps() {
             if ($('#' + friendlyName).length > 0) {
                 $("#" + friendlyName).html(obj.html());
             } else {
-                $("#navbar-example2").find(".nav").append(li);
+                $("#main-navigation").find(".nav").append(li);
                 obj.show();
                 $("#content").append(obj);
             }

@@ -99,8 +99,8 @@ function create_graph($output, $rrdPath, $name, $seconds)
     rrd_graph(
         'public/graphs/' . $output . '.png',
         array(
-            '-h 80',
-            '-w 600',
+            '-h 120',
+            '-w 640',
             '-s -' . $seconds,
             '-e now',
             '-t ' . $name,
