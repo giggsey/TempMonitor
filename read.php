@@ -26,7 +26,14 @@ foreach ($config as $name => $data) {
 
     foreach (array('', '10','11','12') as $f) {
         $oneWireLocation = $sensor . '/temperature' . $f;
-        $temp = floatval(trim(file_get_contents('/mnt/1wire/' . $oneWireLocation)));
+        $fileContents = @file_get_contents('/mnt/1wire/' . $oneWireLocation);
+
+        if ($fileContents === false) {
+            // File doesn't exist, skip
+            continue;
+        }
+
+        $temp = floatval(trim($fileContents));
 
         echo "{$oneWireLocation} reports '{$temp}'\n";
 
@@ -38,7 +45,7 @@ foreach ($config as $name => $data) {
     }
 
     if ($temperature === null) {
-        echo "{$name} is too hot!\n";
+        echo "{$name} isn't quite right, unable to do anything for this sensor\n";
         continue;
     }
 
