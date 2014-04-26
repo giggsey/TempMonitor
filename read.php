@@ -18,7 +18,7 @@ foreach ($config as $name => $data) {
 
     $friendlyName = array_key_exists('name', $data) ? $data['name'] : $name;
 
-    echo "Processing '{$name}'\n";
+    echo "Processing '{$friendlyName}' ({$name})\n";
 
     $sensor = $data['sensor'];
 
